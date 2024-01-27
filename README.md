@@ -21,4 +21,5 @@ Bu proje, Unity kullanılarak geliştirilmiş basit bir multiplayer oyun örneğ
    c. son olarak ta heathen-engineering import etmeniz yeterlidir.
 
 <h1> Proje Örnek Görüntüler </h1>
-![image](https://github.com/Gadaffi508/Multiplier_Works/assets/121219831/29468ef4-c9cb-4b8d-8d70-0d3abfd28a7b)
+
+![Ekran görüntüsü 2024-01-27 101317](https://github.com/Gadaffi508/Multiplier_Works/assets/121219831/e4616bcb-2a22-4190-a529-7ba7713af32b)
