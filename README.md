@@ -10,9 +10,9 @@ Bu proje, Unity kullanılarak geliştirilmiş basit bir multiplayer oyun örneğ
    git clone github.com/Gadaffi508/Multiplier_Works/
 2. Kütüphane Linkleri
    
-     <ul> https://assetstore.unity.com/packages/tools/network/fish-net-networking-evolved-207815 </ul>
-     <ul> https://github.com/FirstGearGames/FishySteamworks/releases/tag/4.0.0 </ul>
-     <ul> https://github.com/heathen-engineering/FizzySteamworks </ul>
+     <ul> ```bash  https://assetstore.unity.com/packages/tools/network/fish-net-networking-evolved-207815 </ul>
+     <ul> ```bash  https://github.com/FirstGearGames/FishySteamworks/releases/tag/4.0.0 </ul>
+     <ul> ```bash  https://github.com/heathen-engineering/FizzySteamworks </ul>
 
 3. kurulum sırası
    <ul> İlk önce steamworks import etmeniz gerekmektedir.</ul>
