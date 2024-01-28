@@ -34,4 +34,5 @@ heathen-engineering
 ![sss](https://github.com/Gadaffi508/Multiplier_Works/assets/121219831/96d5f1b5-356e-4fd5-afd2-1ee337670955)
 
 <h3> Server Host and Client </h3>
-![sdf](https://github.com/Gadaffi508/Multiplier_Works/assets/121219831/99de2d0a-d53c-42e7-9060-cf7bf3e04e77)
+
+![sdf](https://github.com/Gadaffi508/Multiplier_Works/assets/121219831/d492f5c9-1b1f-4208-841c-1193d76f9b7d)
