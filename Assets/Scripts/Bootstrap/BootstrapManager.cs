@@ -17,6 +17,7 @@ public class BootstrapManager : MonoBehaviour
     public string menuName = "LobbyScene";
     public NetworkManager _networkManager;
     public FishySteamworks.FishySteamworks _FishySteamworks;
+    public GameObject C_BG;
 
     ///<summary>
     /// Callbacks
@@ -30,10 +31,11 @@ public class BootstrapManager : MonoBehaviour
 
     private void Start()
     {
-        ///<summary> Steam is Online and Start load the menuscene </summary>
-        if(SteamManager.Initialized)
-            SceneManager.LoadScene(menuName,LoadSceneMode.Additive);
-
+        ///<summary> if Steam is Offline return </summary>
+        if(!SteamManager.Initialized) return;
+        
+        C_BG.SetActive(false);
+        SceneManager.LoadScene(menuName,LoadSceneMode.Additive);
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
         LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
