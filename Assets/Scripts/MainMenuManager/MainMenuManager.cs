@@ -70,6 +70,7 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         string[] scenesToClose = new string[] { "LobbyScene" };
-        BootstrapNeyworkManager.ChangeNetworkScene("GameScene",scenesToClose);
+        //BootstrapNeyworkManager.ChangeNetworkScene("GameScene",scenesToClose);
+        CloseAllScreen();
     }
 }

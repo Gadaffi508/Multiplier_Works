@@ -14,10 +14,10 @@ public class BootstrapManager : MonoBehaviour
     /// </summary>
     private void Awake() => Instance = this;
     
-    public string menuName = "LobbyScene";
+    //public string menuName = "LobbyScene";
     public NetworkManager _networkManager;
     public FishySteamworks.FishySteamworks _FishySteamworks;
-    public GameObject C_BG;
+    //public GameObject C_BG;
 
     ///<summary>
     /// Callbacks
@@ -34,8 +34,8 @@ public class BootstrapManager : MonoBehaviour
         ///<summary> if Steam is Offline return </summary>
         if(!SteamManager.Initialized) return;
         
-        C_BG.SetActive(false);
-        SceneManager.LoadScene(menuName,LoadSceneMode.Additive);
+        //C_BG.SetActive(false);
+        //SceneManager.LoadScene(menuName,LoadSceneMode.Additive);
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
         LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);

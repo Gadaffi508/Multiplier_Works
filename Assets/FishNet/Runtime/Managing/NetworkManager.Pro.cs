@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace FishNet.Managing
 {
-    public sealed partial class NetworkManager : MonoBehaviour
+    public partial class NetworkManager : MonoBehaviour
     {
 
         #region Public.

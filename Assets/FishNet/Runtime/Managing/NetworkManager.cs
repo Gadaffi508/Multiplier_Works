@@ -35,7 +35,7 @@ namespace FishNet.Managing
     [DefaultExecutionOrder(short.MinValue)]
     [DisallowMultipleComponent]
     [AddComponentMenu("FishNet/Manager/NetworkManager")]
-    public sealed partial class NetworkManager : MonoBehaviour
+    public partial class NetworkManager : MonoBehaviour
     {
         #region Types.
         /// <summary>
