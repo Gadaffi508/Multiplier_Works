@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using FishNet.Object.Synchronizing;
 using FishNet.Object;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class NetworkPlayerController : NetworkBehaviour
                 return _manager;
             }
 
-            return _manager = CustomNetworkManager.Instances as CustomNetworkManager;
+            return _manager = CustomNetworkManager.Instances.Single() as CustomNetworkManager;
         }
     }
     

@@ -16,13 +16,22 @@ public class SteamLobby : MonoBehaviour
     protected Callback<GameLobbyJoinRequested_t> JoinRequest;
     protected Callback<LobbyEnter_t> LobbyEntered;
     
+    protected Callback<LobbyMatchList_t> LobbyList;
+    protected Callback<LobbyDataUpdate_t> LobbyDataUpdated; 
+    
     //variables
     public ulong currentLobbyID;
     private const string HostAddressKey = "HostAddress";
-    private CustomNetworkManager _manager;
     public Text lobbyNameText;
+    public Text lobbyIDText;
     
     public FishySteamworks.FishySteamworks _FishySteamworks;
+    
+    public List<CSteamID> lobbyIDs = new List<CSteamID>();
+
+    public InputField EnterIDField;
+
+    public GameObject[] LobbiesObjects;
 
     private void Start()
     {
@@ -31,13 +40,19 @@ public class SteamLobby : MonoBehaviour
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
         LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
-
-        _manager = GetComponent<CustomNetworkManager>();
+        
+        LobbyList = Callback<LobbyMatchList_t>.Create(OnGetLobbyList);
+        LobbyDataUpdated = Callback<LobbyDataUpdate_t>.Create(OnGetLobbyData);
     }
 
     public void HostLobby()
     {
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePublic, 2);
+
+        foreach (GameObject obj in LobbiesObjects)
+        {
+            obj.SetActive(false);
+        }
     }
     
     private void OnLobbyCreated(LobbyCreated_t callback)
@@ -51,6 +66,8 @@ public class SteamLobby : MonoBehaviour
         
         _FishySteamworks.SetClientAddress(SteamUser.GetSteamID().ToString());
         _FishySteamworks.StartConnection(true);
+
+        lobbyIDText.text = currentLobbyID.ToString();
         
         Debug.Log("Lobby Created Succesfully");
     }
@@ -70,5 +87,65 @@ public class SteamLobby : MonoBehaviour
         
         _FishySteamworks.SetClientAddress(SteamMatchmaking.GetLobbyData(new CSteamID(currentLobbyID),HostAddressKey));
         _FishySteamworks.StartConnection(false);
+    }
+    
+    public void JoinLobby(CSteamID lobbyID)
+    {
+        SteamMatchmaking.JoinLobby(lobbyID);
+    }
+    
+    public void GetLobbiesList()
+    {
+        if(lobbyIDs.Count > 0) lobbyIDs.Clear();
+        
+        SteamMatchmaking.AddRequestLobbyListResultCountFilter(60);
+        SteamMatchmaking.RequestLobbyList();
+    }
+    
+    private void OnGetLobbyData(LobbyDataUpdate_t result)
+    {
+        LobbiesListManager.Instance.DisaplayLobbies(lobbyIDs,result);
+    }
+    
+    private void OnGetLobbyList(LobbyMatchList_t result)
+    {
+        if(LobbiesListManager.Instance.listOfLobbies.Count > 0) LobbiesListManager.Instance.DestroyLobbies();
+        //Tüm listeye ulaşma
+        for (int i = 0; i < result.m_nLobbiesMatching; i++)
+        {
+            CSteamID lobbyId = SteamMatchmaking.GetLobbyByIndex(i);
+            lobbyIDs.Add(lobbyId);
+            SteamMatchmaking.RequestLobbyData(lobbyId);
+        }
+    }
+
+    public void EnteredLobby()
+    {
+        string steamIDText = EnterIDField.text;
+        
+        CSteamID steamID;
+        if (ulong.TryParse(steamIDText, out ulong steamIDValue))
+        {
+            steamID = (CSteamID)steamIDValue;
+            JoinLobby(steamID);
+        }
+        
+        foreach (GameObject obj in LobbiesObjects)
+        {
+            obj.SetActive(false);
+        }
+    }
+    
+    public void LeaveLobby()
+    {
+        SteamMatchmaking.LeaveLobby(new CSteamID(currentLobbyID));
+        currentLobbyID = 0;
+        
+        foreach (GameObject obj in LobbiesObjects)
+        {
+            obj.SetActive(true);
+        }
+        
+        Debug.Log("Disconnected");
     }
 }
