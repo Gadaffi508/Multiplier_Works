@@ -1,27 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FishNet.Connection;
 using FishNet.Object.Synchronizing;
 using FishNet.Object;
 using UnityEngine;
 
 public class NetworkPlayerController : NetworkBehaviour
 {
-    private CustomNetworkManager _manager;
-
-    private CustomNetworkManager Manager
-    {
-        get
-        {
-            if (_manager != null)
-            {
-                return _manager;
-            }
-
-            return _manager = CustomNetworkManager.Instances.Single() as CustomNetworkManager;
-        }
-    }
-    
     [SyncVar] public int connectionID;
     [SyncVar] public int playerIdNumber;
     [SyncVar] public ulong playerSteamID;
@@ -31,14 +18,12 @@ public class NetworkPlayerController : NetworkBehaviour
 
     public override void OnStartClient()
     {
-        _manager.GamePlayer.Add(this);
         LobbyController.Instance.UpdateLobbyName();
         LobbyController.Instance.UpdatePlayerList();
     }
 
     public override void OnStopClient()
     {
-        _manager.GamePlayer.Remove(this);
         LobbyController.Instance.UpdatePlayerList();
     }
 

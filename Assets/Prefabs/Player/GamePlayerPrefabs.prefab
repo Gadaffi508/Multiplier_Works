@@ -453,8 +453,9 @@ GameObject:
   - component: {fileID: 5108447988133143667}
   - component: {fileID: 6045942600277843493}
   - component: {fileID: 3098514290897885345}
+  - component: {fileID: 8650044216794060712}
   m_Layer: 0
-  m_Name: Player
+  m_Name: GamePlayerPrefabs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,7 +584,7 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 4121606829519803397
+  <AssetPathHash>k__BackingField: 15984254103138128631
 --- !u!114 &6045942600277843493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,6 +651,25 @@ MonoBehaviour:
   _interpolation: 2
   _clientAuthoritative: 1
   _sendToOwner: 0
+--- !u!114 &8650044216794060712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5108447988133143669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b6c4ac04f2b7d48ac444b73d0bcabd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 5108447988133143667}
+  _networkObjectCache: {fileID: 0}
+  connectionID: 0
+  playerIdNumber: 0
+  playerSteamID: 0
+  playerName: 
 --- !u!1 &5225769195871333850
 GameObject:
   m_ObjectHideFlags: 0
